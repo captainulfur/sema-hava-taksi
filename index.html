@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sema · İstanbul hava taksisi</title>
+    <meta name="description" content="Dört koltuklu, elektrikli, dikey kalkan hava taksisi. Kadıköy'den Levent'e 9 dakika." />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="yukleme" id="yukleme">
+      <span class="yukleme-marka">sema</span>
+      <div class="yukleme-cizgi"><i id="yuklemeCizgi"></i></div>
+    </div>
+
+    <canvas class="sahne" id="sahne"></canvas>
+
+    <header class="ust">
+      <a class="logo" href="#">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 14c4-1 6-6 10-6s6 5 10 6" /><circle cx="12" cy="8" r="2.2" /></svg>
+        sema
+      </a>
+      <span class="ust-not">İstanbul · elektrikli hava taksisi</span>
+      <nav>
+        <a href="#kalkis">Uçuş</a>
+        <a href="#guvenlik">Güvenlik</a>
+        <a href="#rotalar">Rotalar</a>
+      </nav>
+      <a class="dugme" href="#bilet">Yerini ayırt</a>
+    </header>
+
+    <aside class="gosterge" aria-hidden="true">
+      <div><span>İRTİFA</span><b id="irtifa">000</b><small>m</small></div>
+      <div><span>NASEL</span><b id="nasel">90</b><small>°</small></div>
+      <div><span>HIZ</span><b id="hiz">000</b><small>km/s</small></div>
+      <div class="gosterge-cetvel"><i id="cetvel"></i></div>
+    </aside>
+
+    <div class="motor-etiketi" id="motorEtiketi" aria-hidden="true">
+      <i></i><span>M3 · DURDU</span><small>yük 5 motora dağıtıldı</small>
+    </div>
+
+    <main id="hikaye">
+      <section class="bolum giris">
+        <p class="etiket">VP-01 Kadıköy <span>→</span> VP-04 Levent</p>
+        <h1>Trafiğin üstünden,<br /><em>9 dakikada</em> karşıya.</h1>
+        <p class="aciklama">Dört koltuklu, tamamen elektrikli hava taksisi. Çatıdan kalkar, çatıya iner; köprü kuyruğu artık aşağıda kalır.</p>
+        <div class="giris-alt">
+          <a class="dugme koyu" href="#rotalar">Rotaları gör</a>
+          <span class="kaydir">Kaydır, kalkalım</span>
+        </div>
+      </section>
+
+      <section class="bolum sag" id="kalkis">
+        <div class="metin">
+          <span class="no">01 · Kalkış</span>
+          <h2>Pist yok.<br /><em>Bir çatı</em> yeter.</h2>
+          <p>Altı pervane yukarı bakarak dikey kalkar; on beş metrelik bir çatı pisti yeterli. Tekerler kalkıştan hemen sonra gövdeye katlanır.</p>
+        </div>
+      </section>
+
+      <section class="bolum sol" id="donusum">
+        <div class="metin">
+          <span class="no">02 · Dönüşüm</span>
+          <h2>Helikopter gibi kalkar,<br /><em>uçak gibi</em> uçar.</h2>
+          <p>Yeterli hıza ulaşınca naseller 90° öne yatar. Artık aracı kanat taşır, pervaneler yalnızca iter: aynı pille üç kat uzağa.</p>
+        </div>
+      </section>
+
+      <section class="bolum orta" id="sessiz">
+        <div class="metin">
+          <span class="no">03 · Kabin</span>
+          <h2>Şehrin üstünde,<br /><em>bir sohbet</em> kadar sessiz.</h2>
+        </div>
+        <div class="sayilar">
+          <div><b data-sayi="45">0</b><small>dB</small><span>500 m'den duyulan ses</span></div>
+          <div><b data-sayi="4">0</b><small>+1</small><span>yolcu ve pilot</span></div>
+          <div><b data-sayi="240">0</b><small>km/s</small><span>seyir hızı</span></div>
+          <div><b data-sayi="160">0</b><small>km</small><span>tek şarjla menzil</span></div>
+        </div>
+      </section>
+
+      <section class="bolum sag" id="guvenlik">
+        <div class="metin">
+          <span class="no">04 · Güvenlik</span>
+          <h2>Bir motor susarsa,<br /><em>beşi</em> devam eder.</h2>
+          <p>Her pervanenin kendi motoru, kendi pili ve kendi denetleyicisi var. Biri durursa uçuş bilgisayarı yükü saniyenin onda birinde ötekilere dağıtır.</p>
+          <ul class="liste">
+            <li><span>06</span> bağımsız elektrik motoru</li>
+            <li><span>03</span> yedekli uçuş bilgisayarı</li>
+            <li><span>01</span> tam gövde paraşütü</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="bolum sol" id="rotalar">
+        <div class="metin">
+          <span class="no">05 · Rotalar</span>
+          <h2>Bir saatlik yol,<br /><em>on dakika.</em></h2>
+          <div class="rotalar">
+            <div class="rota" style="--araba: 55; --sema: 9">
+              <p>Kadıköy <span>→</span> Levent</p>
+              <div class="cubuk araba"><i></i><small>araçla 55 dk</small></div>
+              <div class="cubuk sema"><i></i><small>sema 9 dk</small></div>
+            </div>
+            <div class="rota" style="--araba: 70; --sema: 16">
+              <p>İstanbul Havalimanı <span>→</span> Levent</p>
+              <div class="cubuk araba"><i></i><small>araçla 70 dk</small></div>
+              <div class="cubuk sema"><i></i><small>sema 16 dk</small></div>
+            </div>
+            <div class="rota" style="--araba: 85; --sema: 14">
+              <p>Ataköy <span>→</span> Beykoz</p>
+              <div class="cubuk araba"><i></i><small>araçla 85 dk</small></div>
+              <div class="cubuk sema"><i></i><small>sema 14 dk</small></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bolum orta son" id="bilet">
+        <div class="metin">
+          <span class="no">06 · Bilet</span>
+          <h2>İlk uçuşlar<br /><em>2027 yazında.</em></h2>
+          <p>Koltuk başı ₺2.400'den. Bekleme listesine katıl, ilk rota açıldığında haber verelim.</p>
+          <form class="form" id="form">
+            <input type="email" placeholder="e-posta adresin" aria-label="E-posta" required />
+            <button class="dugme" type="submit">Listeye katıl</button>
+          </form>
+          <small class="not">sema hayali bir şirkettir; bu site bir tasarım çalışmasıdır.</small>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
